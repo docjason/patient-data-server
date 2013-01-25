@@ -19,7 +19,7 @@ namespace :hdata do
       # uri = URI.parse(ENV['MONGOHQ_URL'])
 	  uri = Mongoid::Sessions::MongoUri.new(ENV['MONGOHQ_URL'])
       @conn = Moped::Session.new(uri.hosts)
-      @db   = @conn['hdata_server_production']
+	  @db = @conn.use('hdata_server_production')
       @coll = @db['records']
     else
       @db   = Moped::Session.new(["127.0.0.1:27017"]).use('hdata_server_development')
