@@ -1,3 +1,4 @@
+require "pry"
 namespace :hdata do
   
   desc "Loads local C32 files from test/fixtures/*Smith*.xml"
@@ -17,6 +18,7 @@ namespace :hdata do
 
     if ENV['MONGOHQ_URL']
       # uri = URI.parse(ENV['MONGOHQ_URL'])
+	  binding.pry
       @conn = Mongo::Connection.from_uri(ENV['MONGOHQ_URL'])
       @db   = @conn['hdata_server_production']
       @coll = @db['records']
