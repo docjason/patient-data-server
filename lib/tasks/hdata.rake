@@ -18,7 +18,7 @@ namespace :hdata do
     if ENV['MONGOHQ_URL']
       # uri = URI.parse(ENV['MONGOHQ_URL'])
 	  uri = Mongoid::Sessions::MongoUri.new(ENV['MONGOHQ_URL'])
-      @conn = Moped.Session.new(uri.hosts)
+      @conn = Moped::Session.new(uri.hosts)
       @db   = @conn['hdata_server_production']
       @coll = @db['records']
     else
