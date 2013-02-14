@@ -2,6 +2,14 @@ class Record
   include Mongoid::Timestamps
   include Mongoid::Versioning
 
+  embeds_many :observations, class_name: "Entry"
+
+  #Sections = [:allergies, :care_goals, :conditions, :encounters, :immunizations, :medical_equipment,
+  #:medications, :procedures, :results, :social_history, :vital_signs, :support, :advance_directives,
+  #:insurance_providers, :functional_statuses]
+
+  Sections << :observations
+
   #-------------------------------------------------------------------------
   # Find a set of entries in the given section and return them sorted
   # by the start_time or time, whichever is present for the given entry.

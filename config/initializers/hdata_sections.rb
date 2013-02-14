@@ -1,4 +1,6 @@
 require 'section_registry'
+require 'continua/obs_importer'
+require 'continua/obs_exporter'
 
 ##############################################################
 # Register all the sections we will use in the web application
@@ -42,4 +44,8 @@ end
 sr.add_section('vital_signs', 'http://projecthdata.org/extension/vital-sign', 'Vital Signs') do |importers, exporters|
   importers['application/xml'] = HealthDataStandards::Import::GreenC32::VitalSignImporter.instance
   exporters['application/xml'] = HealthDataStandards::Export::GreenC32::ExportGenerator.create_exporter_for(:vital_sign)
+end
+sr.add_section('observations', 'http://www.continuaalliance.org/documentDefinitions/WANObservation', 'Observations') do |importers, exporters|
+  importers['application/xml'] = Continua::ObsImporter.instance
+  exporters['application/xml'] = Continua::ObsExporter.instance  
 end
