@@ -39,7 +39,7 @@ class EntriesController < ApplicationController
 
       section_document = import_document(content_type)
       @record.send(@section_name).push(section_document)
-      response['Location'] = section_document_url(record_id: @record, section: @section_name, id: section_document)
+      response['Location'] = section_document_url(record_id: @record.medical_record_number, section: @section_name, id: section_document)
       render text: 'Section document created', status: 201
     end
   end
